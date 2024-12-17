@@ -1,0 +1,15 @@
+﻿<Window x:Class="Курсовая.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Курсовая"
+        mc:Ignorable="d"
+        Title="Меню" Height="450" Width="800" Background="Bisque">
+    <Grid>
+        <TextBlock Height="53" Width="400" FontSize="35" TextAlignment="Center" Margin="200,23,200,351" FontFamily="Times New Roman"  >Добро пожаловать</TextBlock>
+        <TextBlock Height="63" Width="420" FontSize="35" TextAlignment="Center" Margin="180,80,180,290" FontFamily="Times New Roman" >"В тренажёр слепой печати"</TextBlock>
+        <Button Background="pink" Foreground="BlueViolet" Height="50" Width="200" Content="Начать!" FontSize="35" FontFamily="Times New Roman" Margin="290,200,290,160" Click="button1_Click" ></Button>
+
+    </Grid>
+</Window>
