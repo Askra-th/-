@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Курсовая.ModelView;
 
 namespace Курсовая
 {
@@ -25,18 +27,27 @@ namespace Курсовая
         DispatcherTimer dt = new DispatcherTimer(); // класс для создание таймера
         Stopwatch sw = new Stopwatch(); //класс для получение прошедшего времени
         string currentTime = string.Empty;
-        public Window1(string title)
-        {
-            this.Symbols();
+
+        Сarrier сarrier = new Сarrier();
+
+
+    public Window1(string title)
+        {   
+  
             InitializeComponent();
+
+            Symbols();
+            dt.Start();
+            sw.Start();
             dt.Tick += new EventHandler(dt_Tick);
             dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
-            OUT.Text = Code;
+            OUT.Text = Code; 
             Miss.Text = "0";
             Title = title;
+            timer.Text = сarrier.Time;
+            
             this.DataContext = this;
-            sw.Start();
-            dt.Start();
+           
 
         }
         void dt_Tick(object sender, EventArgs e)
@@ -46,27 +57,27 @@ namespace Курсовая
                 TimeSpan ts = sw.Elapsed;
                 currentTime = String.Format("{0:00}:{1:00}:{2:00}",
                 ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-                if (ts.Minutes >= 1000|| Mistakes > 100)
+                if (ts.Minutes >= 1000)
                 {
-                    
+
                     End(ts.Minutes);
                 }
-                timer.Text = currentTime;
-               
+                сarrier.Time= currentTime;
+                timer.Text = сarrier.Time;
+
             }
         }
-
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            if (INPUT.Text.Length == 4 ) 
+            if (INPUT.Text.Length == 4)
             {
-                Check(); 
+                Check();
                 this.Symbols();
                 OUT.Text = Code;
                 INPUT.Clear();
-                End();  
+                End();
             }
 
         }
@@ -79,19 +90,19 @@ namespace Курсовая
         private string Code { get; set; }
         private static int Mistakes { get; set; } = 0;
         private static int Limit { get; set; } = 100;
-        private void Symbols() 
+        private void Symbols()
         {
-             Code= "";   
-                Random rand = new Random();
-                int n = 4;
-                char[] a = new char[4];
-                
-                    for (int i = 0; i < n; i++)
-                    {
-                        a[i] = (char)rand.Next(0x0410, 0x44F);
-                        Code+=a[i] + " ";
-                    } 
-            
+            Code = "";
+            Random rand = new Random();
+            int n = 4;
+            char[] a = new char[4];
+
+            for (int i = 0; i < n; i++)
+            {
+                a[i] = (char)rand.Next(0x0410, 0x44F);
+                Code += a[i] + " ";
+            }
+
         }
         private void Origin()
         {
@@ -126,7 +137,7 @@ namespace Курсовая
         private void End(int time)
         {
             
-                Итоги window = new Итоги(Mistakes+101,timer.Text,time);
+                Итоги window = new Итоги(Mistakes,timer.Text,time);
                 Origin();
                 window.ShowDialog();
                 Restart();

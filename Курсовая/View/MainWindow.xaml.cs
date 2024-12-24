@@ -22,8 +22,8 @@ namespace Курсовая
         }
         private void button1_Click(object sender, RoutedEventArgs e)
             {
-            Window1 window=new Window1("Тренажёр");
+            Window1 window = new Window1("Тренажёр");
             window.ShowDialog();
-            }
+        }
     }
 }

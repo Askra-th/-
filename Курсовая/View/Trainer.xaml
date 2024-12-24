@@ -11,7 +11,7 @@
         <TextBlock x:Name="OUT" Text="{Binding Code}" FontSize="35" FontFamily="Times New Roman" Height="50" Width="150" Margin="315,90,325,250" TextAlignment="Center"></TextBlock>
         <TextBox x:Name="INPUT" Height="40" Width="140"  Background="Pink" FontSize="30" TextAlignment="Center" MaxLength="4" TextChanged="TextBox_TextChanged"></TextBox>
         <TextBlock FontSize="20" Background="Firebrick" FontFamily="Times New Roman" Height="30" Width="150" Margin="600,310,40,20" TextAlignment="Center" >Ошибки: <TextBlock Foreground="LightBlue" x:Name="Miss"></TextBlock></TextBlock>
-        <TextBlock FontSize="20" Background="Firebrick" FontFamily="Times New Roman" Height="30" Width="150" Margin="600,270,40,60" TextAlignment="Center" >Время: <TextBlock Foreground="LightBlue" x:Name="timer"></TextBlock></TextBlock>
+        <TextBlock FontSize="20" Background="Firebrick" FontFamily="Times New Roman" Height="30" Width="150" Margin="600,270,40,60" TextAlignment="Center" >Время: <TextBlock Foreground="LightBlue" x:Name="timer" Text="{Binding Time}" ></TextBlock></TextBlock>
         
     </Grid>
 </Window>

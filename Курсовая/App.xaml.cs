@@ -9,6 +9,7 @@ namespace Курсовая
     /// </summary>
     public partial class App : Application
     {
+        
     }
 
 }
