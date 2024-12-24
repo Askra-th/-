@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Курсовая.ModelView;
 
 namespace Курсовая
 {
@@ -21,9 +22,8 @@ namespace Курсовая
             InitializeComponent();
         }
         private void button1_Click(object sender, RoutedEventArgs e)
-            {
-            Window1 window = new Window1("Тренажёр");
-            window.ShowDialog();
+        {
+             Transshipment_point _Point = new Transshipment_point();
         }
     }
 }

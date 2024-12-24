@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Identity.Client;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -16,11 +17,14 @@ namespace Курсовая.ModelView
         Check check = new Check();
         public Transshipment_point()
         {
-            //Start();
-            Window1 window = new Window1("Тренажёр");
-            сarrier.CarrierWin(window);
+            Start();
+            Window1 window = new Window1("Тренажёр", сarrier);
             window.ShowDialog();
-
+            
+        }
+        public void OUT_TIME(string str)
+        {
+            сarrier.Time=str;
         }
         public void Start()
         {

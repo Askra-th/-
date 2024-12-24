@@ -28,10 +28,10 @@ namespace Курсовая
         Stopwatch sw = new Stopwatch(); //класс для получение прошедшего времени
         string currentTime = string.Empty;
 
-        Сarrier сarrier = new Сarrier();
+        
 
 
-    public Window1(string title)
+    public Window1(string title, Сarrier carrier)
         {   
   
             InitializeComponent();
@@ -39,34 +39,34 @@ namespace Курсовая
             Symbols();
             dt.Start();
             sw.Start();
-            dt.Tick += new EventHandler(dt_Tick);
+            //dt.Tick += new EventHandler(dt_Tick);
             dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
-            OUT.Text = Code; 
+            OUT.Text = carrier.Inspector; 
             Miss.Text = "0";
             Title = title;
-            timer.Text = сarrier.Time;
+            timer.Text = carrier.Time;
             
             this.DataContext = this;
            
 
         }
-        void dt_Tick(object sender, EventArgs e)
-        {
-            if (sw.IsRunning) //свойство, если таймер идёт
-            {
-                TimeSpan ts = sw.Elapsed;
-                currentTime = String.Format("{0:00}:{1:00}:{2:00}",
-                ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-                if (ts.Minutes >= 1000)
-                {
+        //void dt_Tick(object sender, EventArgs e)
+        //{
+        //    if (sw.IsRunning) //свойство, если таймер идёт
+        //    {
+        //        TimeSpan ts = sw.Elapsed;
+        //        currentTime = String.Format("{0:00}:{1:00}:{2:00}",
+        //        ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+        //        if (ts.Minutes >= 1000)
+        //        {
 
-                    End(ts.Minutes);
-                }
-                сarrier.Time= currentTime;
-                timer.Text = сarrier.Time;
+        //            End(ts.Minutes);
+        //        }
+        //        Time= currentTime;
+        //        timer.Text = сarrier.Time;
 
-            }
-        }
+        //    }
+        //}
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
