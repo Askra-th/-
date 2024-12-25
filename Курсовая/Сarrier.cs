@@ -28,6 +28,7 @@ namespace Курсовая.ModelView
         //    }
         //}
         public Window1 Window { get; set; }
+
         public string Time { get; set; }
         public int Miss { get; set; }
         public int Right { get; set; }

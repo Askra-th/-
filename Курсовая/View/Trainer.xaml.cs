@@ -24,49 +24,29 @@ namespace Курсовая
     /// </summary>
     public partial class Window1 : Window
     {
-        DispatcherTimer dt = new DispatcherTimer(); // класс для создание таймера
-        Stopwatch sw = new Stopwatch(); //класс для получение прошедшего времени
-        string currentTime = string.Empty;
-
-        
 
 
-    public Window1(string title, Сarrier carrier)
+    public Window1(string title)
         {   
   
             InitializeComponent();
-
-            Symbols();
-            dt.Start();
-            sw.Start();
-            //dt.Tick += new EventHandler(dt_Tick);
-            dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
-            OUT.Text = carrier.Inspector; 
             Miss.Text = "0";
             Title = title;
-            timer.Text = carrier.Time;
             
             this.DataContext = this;
            
 
         }
-        //void dt_Tick(object sender, EventArgs e)
-        //{
-        //    if (sw.IsRunning) //свойство, если таймер идёт
-        //    {
-        //        TimeSpan ts = sw.Elapsed;
-        //        currentTime = String.Format("{0:00}:{1:00}:{2:00}",
-        //        ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-        //        if (ts.Minutes >= 1000)
-        //        {
+        public void Start_1( Сarrier carrier)
+        {
+            OUT.Text = carrier.Inspector;
+            timer.Text = carrier.Time;
 
-        //            End(ts.Minutes);
-        //        }
-        //        Time= currentTime;
-        //        timer.Text = сarrier.Time;
-
-        //    }
-        //}
+        }
+         public void Out_Time(Сarrier str)
+        {
+            timer.Text = str.Time;
+        }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -106,7 +86,7 @@ namespace Курсовая
         }
         private void Origin()
         {
-            sw.Stop();
+            
             
             Mistakes = 0;
             Limit = 100;
@@ -118,7 +98,7 @@ namespace Курсовая
         {
             this.Symbols();
             OUT.Text = Code;
-            sw.Restart();
+            
         }
         private void End() 
         {
