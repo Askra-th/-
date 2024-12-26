@@ -7,26 +7,9 @@ using System.Threading.Tasks;
 
 namespace Курсовая.ModelView
 {
-    public class Сarrier/*: INotifyPropertyChanged*/
+    public class Сarrier
     {
-        //public event PropertyChangedEventHandler PropertyChanged;
-        //private void OnPropertyChanged(string propertyName)
-        //{
-        //    if (PropertyChanged != null)
-        //    {
-        //        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        //    }
-        //}
-        //private string _Time;
-        //public string ImageFullPath
-        //{
-        //    get { return _Time; }
-        //    set
-        //    {
-        //        _Time = value;
-        //        OnPropertyChanged("Time");
-        //    }
-        //}
+       
         public Window1 Window { get; set; }
 
         public string Time { get; set; }
@@ -34,7 +17,7 @@ namespace Курсовая.ModelView
         public int Right { get; set; }
         public string Inspector { get; set; }
         public string Cheking { get; set; }
-        public int Limit { get; set; }
+        public int Limit { get; set; } = 104;
         public void Carrier(string time, int miss, int right, int limit)
         {
             Time = time;

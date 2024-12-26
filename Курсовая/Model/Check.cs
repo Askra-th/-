@@ -25,11 +25,7 @@ namespace Курсовая.Model
                     carrier.Right++;
                 }
             }
-            if (carrier.Limit == 0)
-            {
-                EnD end = new EnD();
-                end.Show(carrier);
-            }
+           
             Symbols(carrier);
 
         }

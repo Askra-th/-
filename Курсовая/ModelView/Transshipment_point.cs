@@ -47,7 +47,7 @@ namespace Курсовая.ModelView
                 {
                 }
                 сarrier.Time = currentTime;
-                window.Out_Time(сarrier);
+                window.Out_Time(сarrier,sw);
 
 
             }

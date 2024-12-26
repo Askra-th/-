@@ -19,33 +19,34 @@ using Курсовая.ModelView;
 
 namespace Курсовая
 {
-    /// <summary>
-    /// Логика взаимодействия для Window1.xaml
-    /// </summary>
     public partial class Window1 : Window
     {
 
-
+    Сarrier сarrier3 = new Сarrier();
     public Window1(string title)
-        {   
-  
+        {    
             InitializeComponent();
             Miss.Text = "0";
             Title = title;
-            
             this.DataContext = this;
-           
-
         }
         public void Start_1( Сarrier carrier)
         {
             OUT.Text = carrier.Inspector;
             timer.Text = carrier.Time;
-
+            сarrier3.Inspector = carrier.Inspector;
         }
-         public void Out_Time(Сarrier str)
+         public void Out_Time(Сarrier str, Stopwatch sw)
         {
             timer.Text = str.Time;
+            сarrier3.Time = str.Time;
+            if (сarrier3.Limit == 4)
+            {
+                sw.Stop();
+                End();
+                sw.Restart();
+            }
+                
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -55,7 +56,7 @@ namespace Курсовая
             {
                 Check();
                 this.Symbols();
-                OUT.Text = Code;
+                OUT.Text = сarrier3.Inspector;
                 INPUT.Clear();
                 End();
             }
@@ -63,16 +64,12 @@ namespace Курсовая
         }
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            Итоги window = new Итоги(Mistakes, timer.Text);
-
+            Итоги window = new Итоги(сarrier3.Miss, сarrier3.Time);
             Restart();
         }
-        private string Code { get; set; }
-        private static int Mistakes { get; set; } = 0;
-        private static int Limit { get; set; } = 100;
         private void Symbols()
         {
-            Code = "";
+            сarrier3.Inspector = "";
             Random rand = new Random();
             int n = 4;
             char[] a = new char[4];
@@ -80,16 +77,14 @@ namespace Курсовая
             for (int i = 0; i < n; i++)
             {
                 a[i] = (char)rand.Next(0x0410, 0x44F);
-                Code += a[i] + " ";
+                сarrier3.Inspector += a[i] + " ";
             }
 
         }
         private void Origin()
         {
-            
-            
-            Mistakes = 0;
-            Limit = 100;
+            сarrier3.Miss = 0;
+            сarrier3.Limit = 104;
             Miss.Text = "0";
             timer.Text= "00:00:00";
             OUT.Text="";
@@ -97,49 +92,40 @@ namespace Курсовая
         private void Restart()
         {
             this.Symbols();
-            OUT.Text = Code;
-            
+            OUT.Text = сarrier3.Inspector;
         }
         private void End() 
         {
-            Limit -= 4;
-            if (Limit == 0)
+            сarrier3.Limit -= 4;
+            if (сarrier3.Limit == 0)
             {
-                Итоги window = new Итоги(Mistakes,timer.Text);
+                Итоги window = new Итоги(сarrier3.Miss, timer.Text);
                 Origin();
                 window.ShowDialog();
                 Restart();
-                
             }
          
 
         }
         private void End(int time)
         {
-            
-                Итоги window = new Итоги(Mistakes,timer.Text,time);
+                Итоги window = new Итоги(сarrier3.Miss, timer.Text,time);
                 Origin();
                 window.ShowDialog();
                 Restart();
-
-            
-
-
         }
         private void Check()
         {
-            string inspector = Code.Replace(" ", "");
+            string inspector = сarrier3.Inspector.Replace(" ", "");
             string checking = INPUT.Text;
-
             for (int i = 0; i < 4; i++)
             {
                 if (inspector[i] != checking[i])
                 {
-                    Mistakes++;
+                    сarrier3.Miss++;
                 }
             }
-            Miss.Text=Convert.ToString(Mistakes);
-
+            Miss.Text=Convert.ToString(сarrier3.Miss);
         }
         
        
