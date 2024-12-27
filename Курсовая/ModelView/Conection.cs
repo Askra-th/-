@@ -11,7 +11,7 @@ namespace Курсовая.ModelView
 {
     class Conection
     {
-        SqlConnection sqlConnection1 = new SqlConnection(@"Data Source=DESKTOP-F61KJS2;Initial Catalog=CourseWork;Integrated Security=True;Trust Server Certificate=True");
+        SqlConnection sqlConnection1 = new SqlConnection(@"Data Source=dbsrv\YAR2024;Initial Catalog=1111;Integrated Security=True;Trust Server Certificate=True");
         public void OpenConnection()
         {
             if (sqlConnection1.State == ConnectionState.Closed)
@@ -28,14 +28,7 @@ namespace Курсовая.ModelView
         }
         public SqlConnection GetConnection()
         {
-            
-            //SqlDataAdapter adapter = new SqlDataAdapter();
-            //DataTable table = new DataTable();
-            //string SqlQuareString = $"insert into Trainer(Time1, Missed1, Right1) values ('',5,6)";// тут нужно в скобках values переменные
-            //SqlCommand command = new SqlCommand(SqlQuareString,GetConnection());
-            //conection.OpenConnection();
             return sqlConnection1;
-
         }
     }
 }
