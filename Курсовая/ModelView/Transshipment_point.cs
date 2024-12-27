@@ -43,11 +43,8 @@ namespace Курсовая.ModelView
                 TimeSpan ts = sw.Elapsed;
                 currentTime = String.Format("{0:00}:{1:00}:{2:00}",
                 ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-                if (ts.Minutes >= 1000)
-                {
-                }
                 сarrier.Time = currentTime;
-                window.Out_Time(сarrier,sw);
+                window.Out_Time(сarrier,sw, ts.Minutes);
 
 
             }

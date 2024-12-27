@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -36,17 +37,25 @@ namespace Курсовая
             timer.Text = carrier.Time;
             сarrier3.Inspector = carrier.Inspector;
         }
-         public void Out_Time(Сarrier str, Stopwatch sw)
+         public void Out_Time(Сarrier str, Stopwatch sw, int time)
         {
             timer.Text = str.Time;
             сarrier3.Time = str.Time;
-            if (сarrier3.Limit == 4)
+            if (time >= 1000)
             {
                 sw.Stop();
-                End();
+                End(time);
                 sw.Restart();
             }
-                
+            else 
+            {
+                if (сarrier3.Limit == 4)
+                {
+                    sw.Stop();
+                    End();
+                    sw.Restart();
+                }
+            }
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -60,7 +69,6 @@ namespace Курсовая
                 INPUT.Clear();
                 End();
             }
-
         }
         private void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -79,7 +87,6 @@ namespace Курсовая
                 a[i] = (char)rand.Next(0x0410, 0x44F);
                 сarrier3.Inspector += a[i] + " ";
             }
-
         }
         private void Origin()
         {
@@ -99,21 +106,27 @@ namespace Курсовая
             сarrier3.Limit -= 4;
             if (сarrier3.Limit == 0)
             {
-                Итоги window = new Итоги(сarrier3.Miss, timer.Text);
+                Out_ out_=new Out_();
+                out_.INPUT(сarrier3);
+                out_.END();
+                Итоги window = new Итоги(сarrier3.Miss, сarrier3.Time);
                 Origin();
                 window.ShowDialog();
                 Restart();
             }
-         
-
         }
         private void End(int time)
         {
-                Итоги window = new Итоги(сarrier3.Miss, timer.Text,time);
+            сarrier3.Limit -= 4;
+            if (сarrier3.Limit == 0)
+            {
+                Итоги window = new Итоги(сarrier3.Miss, сarrier3.Time, time);
                 Origin();
                 window.ShowDialog();
                 Restart();
+            }
         }
+
         private void Check()
         {
             string inspector = сarrier3.Inspector.Replace(" ", "");
@@ -124,11 +137,13 @@ namespace Курсовая
                 {
                     сarrier3.Miss++;
                 }
+                else 
+                {
+                    сarrier3.Right++;
+                }
             }
             Miss.Text=Convert.ToString(сarrier3.Miss);
         }
-        
-       
     }
 }
 

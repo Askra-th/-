@@ -9,9 +9,6 @@ namespace Курсовая.ModelView
 {
     public class Сarrier
     {
-       
-        public Window1 Window { get; set; }
-
         public string Time { get; set; }
         public int Miss { get; set; }
         public int Right { get; set; }
@@ -29,10 +26,6 @@ namespace Курсовая.ModelView
         {
             Inspector = inspector;
             Cheking = cheking;
-        }
-        public void CarrierWin(Window1 window)
-        {
-            Window = window;
-        }
+        }  
     }
 }

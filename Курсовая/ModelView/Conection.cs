@@ -11,29 +11,30 @@ namespace Курсовая.ModelView
 {
     class Conection
     {
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=DESKTOP-F61KJS2;Initial Catalog=CourseWork;Integrated Security=True;Trust Server Certificate=True");
+        SqlConnection sqlConnection1 = new SqlConnection(@"Data Source=DESKTOP-F61KJS2;Initial Catalog=CourseWork;Integrated Security=True;Trust Server Certificate=True");
         public void OpenConnection()
         {
-            if (sqlConnection.State == ConnectionState.Closed)
+            if (sqlConnection1.State == ConnectionState.Closed)
             {
-                sqlConnection.Open();
+                sqlConnection1.Open();
             }
         }
         public void ClosedConnection()
         {
-            if (sqlConnection.State == ConnectionState.Open)
+            if (sqlConnection1.State == ConnectionState.Open)
             {
-                sqlConnection.Close();
+                sqlConnection1.Close();
             }
         }
         public SqlConnection GetConnection()
         {
+            
             //SqlDataAdapter adapter = new SqlDataAdapter();
             //DataTable table = new DataTable();
             //string SqlQuareString = $"insert into Trainer(Time1, Missed1, Right1) values ('',5,6)";// тут нужно в скобках values переменные
             //SqlCommand command = new SqlCommand(SqlQuareString,GetConnection());
             //conection.OpenConnection();
-            return sqlConnection;
+            return sqlConnection1;
 
         }
     }

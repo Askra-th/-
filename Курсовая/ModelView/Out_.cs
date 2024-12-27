@@ -21,10 +21,10 @@ namespace Курсовая.ModelView
 
         public Сarrier END()
         {
-            using (conection.GetConnection())
-            {
-                SqlCommand cmd = new SqlCommand("SELECT TOP 1 * FROM Trainer ORDER BY id DESC", conection.GetConnection());
+
+            
                 conection.OpenConnection();
+                SqlCommand cmd = new SqlCommand("SELECT TOP 1 * FROM Trainer ORDER BY Tr_ID DESC", conection.GetConnection());
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
@@ -32,8 +32,10 @@ namespace Курсовая.ModelView
                     сarrier.Miss = Convert.ToInt32(reader["Missed1"]);
                     сarrier.Right = Convert.ToInt32(reader["Right1"]);
                 }
+                conection.ClosedConnection();
+            
                 return сarrier;
-            }
+            
 
         }
         public void INPUT(Сarrier сarrier2)
@@ -43,16 +45,17 @@ namespace Курсовая.ModelView
             string time = сarrier2.Time;
             int miss = сarrier2.Miss;
             int right1 = 100 - сarrier2.Miss;
-            using (conection.GetConnection())
-            {
+            
                 conection.OpenConnection();
-                string SqlQuareString = $"insert into Trainer(Time1, Missed1, Right1) values ('@time',@miss,@right1)";// тут нужно в скобках values переменные
-                SqlCommand command = new SqlCommand(SqlQuareString);
+                string SqlQuareString = $"insert into Trainer(Time1, Missed1, Right1) values ('{time}',{miss},{right1})";// тут нужно в скобках values переменные
+                SqlCommand command = new SqlCommand(SqlQuareString, conection.GetConnection());
                 command.Parameters.AddWithValue("Time1", time);
                 command.Parameters.AddWithValue("Missed1", miss);
                 command.Parameters.AddWithValue("right1", right1);
                 command.ExecuteNonQuery();
-            }
+                conection.ClosedConnection();
+           
+          
         }
 
 
